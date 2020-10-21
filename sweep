@@ -1,0 +1,22 @@
+#include <Servo.h>    //匯入servo的函式庫(匯入Servo這個函式模組，若無導入就不能使用Servo。函式模組只會在有匯入過的程式碼檔案使用，若開了另一個檔案 沒有匯入就無法使用。)
+
+Servo myservo;  // create servo object to control a servo   建立servo物件並定義myservo就是等等用來做控制的。
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position   宣告變數pos=0(宣告就是告訴電腦等等會用到這個數值。變數可以當作是一個數質的容器。)
+
+void setup() {  //程式前置的動作:只會執行一次
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object  用myservo控制pin 9。
+}
+
+void loop() {   //迴圈:程式會一直執行的部分
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees   (當pos=0並且pos<=0時 pos每跑一次程式就+1 直到pos=180。)
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'  告訴servo這個控制器pos目前的狀態(pos = 0; pos <= 180)並執行動作(pos += 1)
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees   (當pos=180並且pos>=0時 pos每跑一次程式就-1 直到pos=0。)
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'  告訴servo這個控制器pos目前的狀態(pos = 180; pos >= 0)並執行動作(pos -= 1)
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+}
